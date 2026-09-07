@@ -39,9 +39,16 @@ sources = {
 
 Typing `SVC_R` offers matching names such as `SVC_READ_FROM_TERMINAL`,
 with `EQU 300` in the completion details. Accepting inserts only the name.
-Suggestions include all `EQU` definitions in the current buffer (including
-unsaved edits) and `svcdefinitions.s16` beside the assembler or one directory
-above it. Current-buffer definitions take precedence for the same name.
+Suggestions include:
+- Current-buffer labels declared with `EQU`, `RW`, `DW`, or `DS`, and labels
+  attached to instructions (including unsaved edits).
+- All supported S16 instruction mnemonics and segment/data directives.
+- Definitions from `svcdefinitions.s16` beside the assembler or one directory
+  above it. Current-buffer definitions take precedence for the same name.
+
+Label details show the declaration, such as `RW 10`, `DS "hello"`, or `INCR R1`.
+Accepting a suggestion inserts just the label or mnemonic.
+
 For a different location, add `definitions = vim.fn.expand("~/path/to/svcdefinitions.s16")`
 to the S16 plugin options. External suggestions do not insert declarations;
 the program still needs the corresponding `EQU` definition to assemble.
