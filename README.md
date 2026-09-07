@@ -14,23 +14,17 @@ NOTE: This repo is 100% AI slop.
 
 ```lua
 return {
-  dir = vim.fn.expand("~/dev/projects/s16.nvim"),
-  name = "s16.nvim",
+  "dommcdev/s16.nvim",
   lazy = false,
   opts = {
-    assembler = vim.fn.expand("~/dev/courses/operating-systems/s16/bin/s16assembler"),
+    assembler = vim.fn.expand("~/path/to/s16/assembler"),
     debounce_ms = 500,
     timeout_ms = 3000,
   },
 }
 ```
 
-Build the course assembler if necessary, from its `s16/` directory:
-
-```sh
-mkdir -p bin
-gcc -std=c11 -o bin/s16assembler s16assembler.c labeltable.c
-```
+Replace `~/path/to/s16/assembler` with the path to your S16 assembler executable.
 
 ## Diagnostics
 
@@ -57,5 +51,5 @@ provide completion, rename, or go-to-definition. Definition-only snippets such a
 ## Test
 
 ```sh
-S16_ASSEMBLER=/absolute/path/to/s16/bin/s16assembler nvim --headless -u NONE -l tests/check.lua
+S16_ASSEMBLER=~/path/to/s16/assembler nvim --headless -u NONE -l tests/check.lua
 ```
