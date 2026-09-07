@@ -8,6 +8,8 @@ labels, decimal/hex numbers, booleans, strings, characters and `;` comments.
 Keywords are case-insensitive, matching the assembler. Supports `""` inside
 strings and `\'` character literals. Sets `commentstring` for Neovim's `gc`.
 
+NOTE: This repo is 100% AI slop.
+
 ## Install with lazy.nvim
 
 ```lua
