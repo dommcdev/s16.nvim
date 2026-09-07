@@ -26,6 +26,26 @@ return {
 
 Replace `~/path/to/s16/assembler` with the path to your S16 assembler executable.
 
+## Completion (blink.cmp)
+
+Add this to your `saghen/blink.cmp` options:
+
+```lua
+sources = {
+  per_filetype = { s16 = { "s16", "path" } },
+  providers = { s16 = { name = "S16", module = "s16.blink" } },
+},
+```
+
+Typing `SVC_R` offers matching names such as `SVC_READ_FROM_TERMINAL`,
+with `EQU 300` in the completion details. Accepting inserts only the name.
+Suggestions include all `EQU` definitions in the current buffer (including
+unsaved edits) and `svcdefinitions.s16` beside the assembler or one directory
+above it. Current-buffer definitions take precedence for the same name.
+For a different location, add `definitions = vim.fn.expand("~/path/to/svcdefinitions.s16")`
+to the S16 plugin options. External suggestions do not insert declarations;
+the program still needs the corresponding `EQU` definition to assemble.
+
 ## Diagnostics
 
 Checks run on opening a file, after edits (including insert mode), and on save.
@@ -45,7 +65,7 @@ statement because the assembler reports lines, not columns. Validation otherwise
 follows the course assembler, including its parsing limitations.
 
 This is a lightweight diagnostic integration, not an LSP server; it does not
-provide completion, rename, or go-to-definition. Definition-only snippets such as
+provide rename or go-to-definition. Definition-only snippets such as
 `svcdefinitions.s16` receive missing-program-header diagnostics when opened alone.
 
 ## Test

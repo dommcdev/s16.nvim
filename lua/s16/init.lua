@@ -5,6 +5,7 @@ local generations = {}
 
 function M.setup(opts)
   options = vim.tbl_extend("force", options, opts or {})
+  require("s16.completion").setup(options)
 end
 
 local function diagnostic(lines, line, message)
